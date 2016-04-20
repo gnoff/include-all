@@ -126,6 +126,13 @@ module.exports = function requireAll(options) {
           var resolved = require.resolve(filepath);
           if (require.cache[resolved]) delete require.cache[resolved];
         }
+        try{
+          var module = require(filepath);
+        } catch (err) {
+          console.error('error requiring', filepath);
+          console.error('error message', err.message);
+          console.error('error stack', err.stack);
+        }
         modules[identity] = require(filepath);
       }
     }
