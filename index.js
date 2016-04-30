@@ -132,8 +132,9 @@ module.exports = function requireAll(options) {
           console.error('error requiring', filepath);
           console.error('error message', err.message);
           console.error('error stack', err.stack);
+          throw err;
         }
-        modules[identity] = require(filepath);
+        modules[identity] = module;
       }
     }
   });
